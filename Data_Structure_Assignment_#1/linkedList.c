@@ -4,23 +4,23 @@
 #include <time.h>
 
 typedef struct linkedList *pLinkedList;
-// LinkedListÀÇ Æ÷ÀÎÅÍ¸¦ pLinkedList·Î ¼±¾ğÇÏ¿© linkedList ¼±¾ğºÎ¿¡ »ç¿ëÇß½À´Ï´Ù.
+// LinkedListì˜ í¬ì¸í„°ë¥¼ pLinkedListë¡œ ì„ ì–¸í•˜ì—¬ linkedList ì„ ì–¸ë¶€ì— ì‚¬ìš©í–ˆìŠµë‹ˆë‹¤.
 
 typedef struct linkedList
 {
 	int data;
 	pLinkedList next;
 } linkedList;
-// linkedList¸¦ intÇüÀÇ data¸¦ °¡Áö°í, ´ÙÀ½ linkedListÀÇ ÁÖ¼Ò(Æ÷ÀÎÅÍ)¸¦ °®´Â ±¸Á¶Ã¼¸¦ ¼±¾ğÇß½À´Ï´Ù.
+// linkedListë¥¼ intí˜•ì˜ dataë¥¼ ê°€ì§€ê³ , ë‹¤ìŒ linkedListì˜ ì£¼ì†Œ(í¬ì¸í„°)ë¥¼ ê°–ëŠ” êµ¬ì¡°ì²´ë¥¼ ì„ ì–¸í–ˆìŠµë‹ˆë‹¤.
 
 void newList(linkedList **list, int in)
 {
-	// doublePointerÇü½ÄÀÇ linkedList°¡ µé¾î¿À¸é »õ·Î linkedList³ëµå¸¦ ¸¸µé¾î ±âÁ¸ linkedList¿¡ ¿¬°áÇÕ´Ï´Ù.
+	// doublePointerí˜•ì‹ì˜ linkedListê°€ ë“¤ì–´ì˜¤ë©´ ìƒˆë¡œ linkedListë…¸ë“œë¥¼ ë§Œë“¤ì–´ ê¸°ì¡´ linkedListì— ì—°ê²°í•©ë‹ˆë‹¤.
 	linkedList *new = (linkedList *)malloc(sizeof(linkedList));
 	new->data = in;
 	new->next = NULL;
 
-	// Ã¹ ³ëµå°¡ ¾Æ´Ò °æ¿ì ³ëµåµéÀÇ ³¡À» Ã£¾Æ¾ß ÇÏ±â¿¡ º¯¼ö¸¦ »õ·Î ¼³Á¤ÇÏ°í, °è¼Ó next·Î ¸¶Áö¸· °ªÀ» Ã£À¸¸ç ¸¶Áö¸·¿¡¼­ ÁÖ¼Ò¸¦ Àü´ŞÇÕ´Ï´Ù.
+	// ì²« ë…¸ë“œê°€ ì•„ë‹ ê²½ìš° ë…¸ë“œë“¤ì˜ ëì„ ì°¾ì•„ì•¼ í•˜ê¸°ì— ë³€ìˆ˜ë¥¼ ìƒˆë¡œ ì„¤ì •í•˜ê³ , ê³„ì† nextë¡œ ë§ˆì§€ë§‰ ê°’ì„ ì°¾ìœ¼ë©° ë§ˆì§€ë§‰ì—ì„œ ì£¼ì†Œë¥¼ ì „ë‹¬í•©ë‹ˆë‹¤.
 	pLinkedList temp = *list;
 	while (temp->next != NULL)
 	{
@@ -29,6 +29,7 @@ void newList(linkedList **list, int in)
 	temp->next = new;
 }
 
+// ì²˜ìŒìœ¼ë¡œ ì‚½ì…ë˜ëŠ” ë…¸ë“œì˜ ê²½ìš° í•´ë‹¹ ì£¼ì†Œë¥¼ *linkedListì— ë„£ìŠµë‹ˆë‹¤.
 void initList(linkedList **list, int in)
 {
 	linkedList *new = (linkedList *)malloc(sizeof(linkedList));
@@ -38,7 +39,7 @@ void initList(linkedList **list, int in)
 	(*list) = new;
 }
 
-// linkedListÀÇ µ¥ÀÌÅÍ¸¦ Ãâ·ÂÇÏ±â À§ÇÑ ÇÔ¼öÀÔ´Ï´Ù.
+// linkedListì˜ ë°ì´í„°ë¥¼ ì¶œë ¥í•˜ê¸° ìœ„í•œ í•¨ìˆ˜ì…ë‹ˆë‹¤.
 void printList(linkedList *list)
 {
 	while (list != NULL)
@@ -48,7 +49,7 @@ void printList(linkedList *list)
 	}
 }
 
-// linkedList¿¡¼­ n¹øÂ° ³ëµå¸¦ Å½»öÇÏ´Â ¸Ş¼ÒµåÀÔ´Ï´Ù.
+// linkedListì—ì„œ në²ˆì§¸ ë…¸ë“œë¥¼ íƒìƒ‰í•˜ëŠ” ë©”ì†Œë“œì…ë‹ˆë‹¤.
 linkedList *searchList(linkedList **list, int n)
 {
 	if (list == NULL)
@@ -73,13 +74,13 @@ linkedList *searchList(linkedList **list, int n)
 	}
 }
 
-// // nÀº 0¹øÂ° À§Ä¡ºÎÅÍ ¸î¹øÂ° À§Ä¡ÀÇ ³ëµå¸¦ Áö¿ï °ÍÀÎÁö¸¦ ÀÇ¹ÌÇÕ´Ï´Ù.
+// // nì€ 0ë²ˆì§¸ ìœ„ì¹˜ë¶€í„° ëª‡ë²ˆì§¸ ìœ„ì¹˜ì˜ ë…¸ë“œë¥¼ ì§€ìš¸ ê²ƒì¸ì§€ë¥¼ ì˜ë¯¸í•©ë‹ˆë‹¤.
 // void delList(linkedList **list, int n)
 // {
 // 	linkedList **temp = list;
 // 	if (temp == NULL)
 // 	{
-// 		printf("»èÁ¦ÇÒ ¸®½ºÆ®°¡ ¾ø½À´Ï´Ù.");
+// 		printf("ì‚­ì œí•  ë¦¬ìŠ¤íŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤.");
 // 		return;
 // 	}
 // 	if (n == 0)
@@ -98,13 +99,13 @@ linkedList *searchList(linkedList **list, int n)
 // 	}
 // }
 
-// nÀº 0¹øÂ° À§Ä¡ºÎÅÍ ¸î¹øÂ° À§Ä¡ÀÇ ³ëµå¸¦ Áö¿ï °ÍÀÎÁö¸¦ ÀÇ¹ÌÇÕ´Ï´Ù.
+// nì€ 0ë²ˆì§¸ ìœ„ì¹˜ë¶€í„° ëª‡ë²ˆì§¸ ìœ„ì¹˜ì˜ ë…¸ë“œë¥¼ ì§€ìš¸ ê²ƒì¸ì§€ë¥¼ ì˜ë¯¸í•©ë‹ˆë‹¤.
 void delList(linkedList **list, int n)
 {
 	linkedList *temp = *list;
 	if (temp == NULL)
 	{
-		printf("»èÁ¦ÇÒ ¸®½ºÆ®°¡ ¾ø½À´Ï´Ù.");
+		printf("ì‚­ì œí•  ë¦¬ìŠ¤íŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	if (n == 0)
@@ -130,7 +131,7 @@ void insertList(linkedList **list, int n, int value)
 
 	if (n == 0)
 	{
-		temp = list;
+		temp = *list;
 		new->next = temp;
 		(*list) = new;
 	}
@@ -144,18 +145,29 @@ void insertList(linkedList **list, int n, int value)
 
 int main()
 {
-	// linkedListÀÇ ½ÃÀÛÁ¡À» ¾Ë·ÁÁÖ´Â Æ÷ÀÎÅÍÀÔ´Ï´Ù.
-	linkedList *startNode = NULL;
+	clock_t start, end;
+	float res;
+	// startì™€ endë¥¼ í†µí•´ í”„ë¡œê·¸ë¨ ì‹¤í–‰ì— ê±¸ë¦° ì‹œê°„ì„ ê³„ì‚°í•©ë‹ˆë‹¤.
 
-	// randomÀ» ÅëÇØ rep°³ÀÇ µ¥ÀÌÅÍ¸¦ ¹«ÀÛÀ§·Î »ğÀÔÇÒ ¿¹Á¤ÀÔ´Ï´Ù. ÀÌ¸¦ ÅëÇØ O(n)À» °è»êÇÒ ¼ö ÀÖ½À´Ï´Ù.
-	int rep = 11;
+	// linkedListì˜ ì‹œì‘ì ì„ ì•Œë ¤ì£¼ëŠ” í¬ì¸í„°ì…ë‹ˆë‹¤.
+	linkedList *startNode = NULL;
+	// ë°˜ë³µíšŸìˆ˜ë¥¼ ì„¤ì •í•´ì£¼ëŠ” ë³€ìˆ˜ì…ë‹ˆë‹¤.
+	int rep = 100000;
 	initList(&startNode, 0);
 	for (int i = 1; i < rep; i++)
 	{
 		newList(&startNode, i);
 	}
-	delList(&startNode, 0);
+
+	start = clock();
+
+	delList(&startNode, 5);
+
 	insertList(&startNode, 10, 100);
 
-	printList(startNode);
+	searchList(&startNode, 1000);
+	end = clock();
+	res = (float)(end - start) / CLOCKS_PER_SEC;
+	printf("%dì˜ ë¦¬ìŠ¤íŠ¸ì—ì„œ íƒìƒ‰ì— ê±¸ë¦° ì‹œê°„ : %f\n", rep, res);
+	// printList(startNode);
 }
