@@ -23,7 +23,7 @@ Node* Insert(Node* node, int data)
         /*
         TODO: Fill the conditions in Insert function
         */
-        if (data<node->data)
+        if (node->data > data)
         {
             node->Left = Insert(node->Left, data);
             return node;
@@ -31,7 +31,7 @@ Node* Insert(Node* node, int data)
         /*
         TODO: Fill the conditions in Insert function
         */
-        else if (               )
+        else if (node->data < data)
         {
             node->Right = Insert(node->Right, data);
             return node;
@@ -60,12 +60,19 @@ int Search(Node* node, int data)
     {
         /*
         TODO: Implement the Search function conditions
-
-
-
-
-
         */
+        if (node->data > data)
+        {
+            Search(node->Left, data);
+        }
+        else if (node->data < data)
+        {
+            Search(node->Right, data);
+        }
+        else
+        {
+            return node;
+        }
     }
 }
 
@@ -78,12 +85,16 @@ Node* Delete(Node* node, int data)
         Node* deleteNode = node;
         /*
         TODO: Implement the Delete function conditions
-
-
-
-
-
         */
+       if(node->Left==NULL&&node->Right==NULL){ //노드 좌우 자식이 NULL일 경우
+
+       }
+       else if((node->Left==NULL)==!(node->Right==NULL)){ //노드 좌우 자식 중 하나가 NULL일 경우
+
+       }else{                                        //노드 좌우 자식 둘 다 NULL
+
+       }
+
         free(deleteNode);
         return node;
     }
@@ -91,12 +102,16 @@ Node* Delete(Node* node, int data)
     {
         /*
         TODO: Implement the delete function traversal
-
-
-
-
-
         */
+        if (node->data > data)
+        {
+            Delete(node->Left, data);
+        }
+        else if (node->data < data)
+        {
+            Delete(node->Right, data);
+        }
+       
         return node;
     }
 }
