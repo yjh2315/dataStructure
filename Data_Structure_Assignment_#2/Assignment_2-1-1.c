@@ -23,7 +23,7 @@ Node* Insert(Node* node, int data)
         /*
         TODO: Fill the conditions in Insert function
         */
-        if (                 )
+        if (data<node->data)
         {
             node->Left = Insert(node->Left, data);
             return node;
