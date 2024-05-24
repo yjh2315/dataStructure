@@ -105,12 +105,12 @@ bool deleteHelper(TrieNode *root, const char *key, int depth)
             */
             bool checker = deleteHelper(root->children[index], key + 1, depth + 1);
             // depth가 증가하고, depth를 증가시키는 새로운 deleteHelper를 호출합니다. deleteHelper는 마지막 '\0'을 만났을 때 값을 리턴할 것이고, 만약 노드를 삭제할 수 없다면 false를 리턴합니다.
-            // 이 값에 따라 마지막에 삭제 될 노드에 대한 정보를 아래 if문에 전달하게 되고, 이전 노드 기준 다음 노드를 삭제합니다.
-            // if (isEmpty(root) == true && root->isEndOfWord == false)
+            // checker는 다음 노드에 대한 정보를 가져오기에 다음 노드의 children을 free하고, 해당 노드를 NULL로 초기화합니다.
+            // 이후의 checker는 노드가 endofWord가 아닌지, 비어있는지를 파악한 후 삭제 여부를 전달합니다.
             if (checker)
             {
                 free(root->children[index]);
-
+                root->children[index] = NULL;
                 return !root->isEndOfWord && isEmpty(root);
             }
         }
@@ -159,10 +159,11 @@ void suggestions(TrieNode *root, const char *currentPrefix)
             char *temp = (char *)malloc((lenStr + 1) * sizeof(char));
             strcpy(temp, currentPrefix);
             temp[lenStr++] = i + 'a';
+            // 기존 복제에서 마지막 자리 '\0'을 대체합니다. 그런 다음 그 다음 자리를 다시 '\0'으로 변경합니다.
             temp[lenStr++] = '\0';
             suggestions(root->children[i], temp);
-            // 재귀적으로 root 다음 알파벳이 trie에 있다면, 해당 문자까지 prefix로 보는 것이다.
             free(temp);
+            // 재귀적으로 root 다음 알파벳이 trie에 있다면, 해당 문자까지 prefix로 보는 것입니다. 그렇게 되면 모든 문자를 출력할 수 있게 됩니다.
         }
     }
 }
