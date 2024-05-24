@@ -156,8 +156,13 @@ void suggestions(TrieNode *root, const char *currentPrefix)
             Hint: recersive solutions are always in handy
             */
             int lenStr = strlen(currentPrefix);
-            char *temp = (char *)malloc((lenStr + 1) * sizeof(char));
-            strcpy(temp, currentPrefix);
+            char *temp = (char *)malloc((lenStr + 2) * sizeof(char));
+            int tmpIndex = 0;
+            while (currentPrefix[tmpIndex])
+            {
+                temp[tmpIndex] = currentPrefix[tmpIndex];
+                tmpIndex++;
+            }
             temp[lenStr++] = i + 'a';
             // 기존 복제에서 마지막 자리 '\0'을 대체합니다. 그런 다음 그 다음 자리를 다시 '\0'으로 변경합니다.
             temp[lenStr++] = '\0';
