@@ -87,10 +87,14 @@ Node* Delete(Node* node, int data)
         TODO: Implement the Delete function conditions
         */
        if(node->Left==NULL&&node->Right==NULL){ //노드 좌우 자식이 NULL일 경우
-
+            //좌우 자식이 없을 경우 연결만 끊으면 되기에 Node를 Free하면 NULL을 가리키게 되기에 더 할 행동이 없습니다.
        }
        else if((node->Left==NULL)==!(node->Right==NULL)){ //노드 좌우 자식 중 하나가 NULL일 경우
+            if(node->Left==NULL){
+                
+            }else{
 
+            }
        }else{                                        //노드 좌우 자식 둘 다 NULL
 
        }
